@@ -59,7 +59,18 @@ print(f"Winner: {key}")
 print (f"-----------------------")
 
 
-
+f = open('Pypoll-output.txt', 'w')
+print("Election Results", file=f)
+print (f"----------------------")
+print(f"Total Votes: {totalVotes}", file=f)
+print (f"----------------------")
+print(f"Khan: {khan_percent:.3%} ({khanVotes})", file=f)
+print(f"Correy: {correy_percent:.3%} ({correyVotes})", file=f)
+print(f"Li: {li_percent:.3%} ({liVotes})", file=f)
+print(f"O'Tooley: {otooley_percent:.3%} ({otooleyVotes})", file=f)
+print (f"-----------------------")
+print(f"Winner: {key}", file=f)
+f.close()
 
 
     
