@@ -8,7 +8,7 @@ total_months = []
 total = []
 average_change = []
 
-#open and read csv
+# CSV reader specifies delimiter and variable that holds contents
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
@@ -21,16 +21,19 @@ with open(csvpath, newline='') as csvfile:
         total.append(int(row[1]))
 
     for i in range(len(total)-1):
-
+#Difference between two months and append to monthly profit change
         average_change.append(total[i+1]-total[i])
-
+#Use max for profit and min for losses
 max_increase_value = max(average_change)
 max_decrease_value = min(average_change)
 
+#count +1
 max_increase_month = average_change.index(max(average_change))+1
 max_decrease_month = average_change.index(min(average_change))+1
 
+#print
 print("Financial Analysis")
+print (f"--------------------------")
 print(f"Total Months: {len(total_months)}")
 print(f"Total: ${sum(total)}")
 print(f"Average Change: {round(sum(average_change)/len(average_change),2)}")

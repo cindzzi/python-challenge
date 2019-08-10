@@ -2,12 +2,15 @@ import os
 import csv
 
 csvpath=os.path.join('..','PyPoll','election_data.csv')
-#declaring variables
+
+#declaring variables with 0 values
 totalVotes= 0
 khanVotes= 0
 correyVotes= 0
 liVotes= 0
 otooleyVotes= 0
+
+ # CSV reader specifies delimiter and variable that holds contents
 with open(csvpath, newline="")as csvfile:
     csvreader=csv.reader(csvfile, delimiter=',')
 
@@ -26,9 +29,37 @@ with open(csvpath, newline="")as csvfile:
         elif row[2] =="O'Tooley":
             otooleyVotes +=1
 
-#create a dictionary/list 
+#create a list 
 candidates = ["Khan", "Correy", "Li","O'Tooley"]
 votes = [khanVotes, correyVotes, liVotes, otooleyVotes]
+
+#the purpose of zip is to map the similar index of multiple containers
+# so they can be used just using as single entity 
+#max function to return the winner
+dict_candidates_and_votes = dict(zip(candidates,votes))
+key = max (dict_candidates_and_votes, key=dict_candidates_and_votes.get)
+
+#Create percentages
+khan_percent = (khanVotes/totalVotes) 
+correy_percent = (correyVotes/totalVotes)
+li_percent = (liVotes/totalVotes) 
+otooley_percent = (otooleyVotes/totalVotes)
+
+
+print(f"Election Results")
+print (f"----------------------")
+print(f"Total Votes: {totalVotes}")
+print (f"----------------------")
+print(f"Khan: {khan_percent:.3%} ({khanVotes})")
+print(f"Correy: {correy_percent:.3%} ({correyVotes})")
+print(f"Li: {li_percent:.3%} ({liVotes})")
+print(f"O'Tooley: {otooley_percent:.3%} ({otooleyVotes})")
+print (f"-----------------------")
+print(f"Winner: {key}")
+print (f"-----------------------")
+
+
+
 
 
     
